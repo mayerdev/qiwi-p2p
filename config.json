@@ -1,0 +1,18 @@
+{
+	"port": 8888,
+	"plugins": ["dc-api-mongo"],
+
+	"db": {
+		"mongo": {
+			"host": "localhost",
+			"name": "qiwi-method"
+		}
+	},
+	"user": {
+		"login": "admin",
+		"password": "qwer123"
+	},
+	"base_url": "http://localhost",
+	"allow_noproxy_processing": false,
+	"allow_token_access": true
+}

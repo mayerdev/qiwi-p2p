@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>QIWI P2P Method</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css">
+    </head>
+	<body>
+		<div class="container">
+			<br>
+			<nav class="navbar navbar-inverse">
+				<div
+					class="container-fluid">
+					<div class="navbar-header">
+						<a class="navbar-brand" href="/drops/index">QIWI P2P</a>
+					</div>
+
+					<div class="collapse navbar-collapse">
+						{% if is_token %}
+							<ul class="nav navbar-nav">
+								<li>
+									<a href="/payments/index">Платежи</a>
+								</li>
+							</ul>
+						{% else %}
+							<ul class="nav navbar-nav">
+								<li>
+									<a href="/drops/index">Дропы</a>
+								</li>
+								<li>
+									<a href="/proxy/index">Прокси</a>
+								</li>
+								<li>
+									<a href="/payments/index">Платежи</a>
+								</li>
+								<li>
+									<a href="/tokens/index">API-токены</a>
+								</li>
+								<li>
+									<a href="/issue/access">Выпустить Access-токен</a>
+								</li>
+								<li>
+									<a href="/issue/ptp">Выпустить P2P-токен</a>
+								</li>
+							</ul>
+						{% endif %}
+					</div>
+				</div>
+			</nav>
+			<br>
+			{% block content %}{% endblock %}
+		</div>
+		<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+	</body>
+</html>

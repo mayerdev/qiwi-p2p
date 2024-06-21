@@ -1,0 +1,13 @@
+Создание платежа:
+POST /api/payment
+    Authorization: Bearer <token>
+    Ожидаемые данные: { amount: number, method: 'qw' | 'card', success_url: string, fail_url: string }
+    Ошибки: NoToken, FillFields, UnknownMethod, NotEnoughDrops
+    Результат в случае успеха: { url: string, id: string }
+    
+    Также может возникнуть ошибка NoProxy
+
+Получение статуса платежа:
+GET /api/payment?id=<OID>
+    Authorization: Bearer <token>
+    Ошибки: NoToken, FillIdField, NotExists

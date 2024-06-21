@@ -1,0 +1,35 @@
+{% extends '../../layout/panel.twig' %}
+
+{% block content %}
+<legend>Список прокси</legend>
+
+<a href="/proxy/create" class="btn btn-primary">Добавить прокси</a>
+<br><br>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>IP</th>
+            <th>Порт</th>
+            <th>Логин</th>
+            <th>Дроп</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in proxys %}
+            <tr>
+                <td>{{ item.ip }}</td>
+                <td>{{ item.port }}</td>
+                <td>{{ item.username }}</td>
+                <td>
+                    <a href="/drops/edit?id={{ item.drop._id }}">{{ item.drop.phone }} [enabled={{ item.drop.enabled ? 'true' : 'false' }}]</a>
+                </td>
+                <td>
+                    <a href="/proxy/edit?id={{ item._id }}">Редактировать</a>
+                    <a href="/proxy/remove?id={{ item._id }}">Удалить</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends '../../layout/panel.twig' %}
+
+{% block content %}
+<legend>Редактирование дропа</legend>
+
+<form method="post">
+    <div class="form-group">
+        <label>Номер телефона без +</label>
+        <input type="text" name="phone" class="form-control" value="{{ drop.phone }}">
+    </div>
+    <div class="form-group">
+        <label>Пароль</label>
+        <input type="text" name="password" class="form-control" value="{{ drop.password }}">
+    </div>
+    <div class="form-group">
+        <label>Access Token</label>
+        <input type="text" name="access_token" class="form-control" value="{{ drop.access_token }}">
+    </div>
+    <div class="form-group">
+        <label>P2P публичный ключ</label>
+        <input type="text" name="p2p_public" class="form-control" value="{{ drop.p2p_public }}">
+    </div>
+    <div class="form-group">
+        <label>P2P приватный ключ</label>
+        <input type="text" name="p2p_secret" class="form-control" value="{{ drop.p2p_secret }}">
+    </div>
+    <div class="form-group">
+        <label>Минимальная сумма за платёж</label>
+        <input type="text" name="min_amount" class="form-control" value="{{ drop.min_amount }}">
+    </div>
+    <div class="form-group">
+        <label>Максимальная сумма за платёж</label>
+        <input type="text" name="max_amount" class="form-control" value="{{ drop.max_amount }}">
+    </div>
+    <div class="form-group">
+        <label>Сумма всех платежей</label>
+        <input type="text" name="total_amount" class="form-control" value="{{ drop.total_amount }}">
+    </div>
+    <div class="form-group">
+        <label>Максимальная сумма всех платежей</label>
+        <input type="text" name="total_max_amount" class="form-control" value="{{ drop.total_max_amount }}">
+    </div>
+    <div class="form-group">
+        <label>Количество успешных платежей</label>
+        <input type="text" name="total_payments" class="form-control" value="{{ drop.total_payments }}">
+    </div>
+    <div class="form-group">
+        <label>Максимальное количество успешных платежей</label>
+        <input type="text" name="total_max_payments" class="form-control" value="{{ drop.total_max_payments }}">
+    </div>
+    <div class="form-group">
+        <input type="checkbox" name="enabled" {{ drop.enabled ? ' checked' : '' }}>
+        <label>Включено ли</label>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+    </div>
+</form>
+{% endblock %}

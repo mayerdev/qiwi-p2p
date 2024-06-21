@@ -1,0 +1,22 @@
+{% extends '../layout/auth.twig' %}
+
+{% block content %}
+<form method="post">
+    {% if error %}
+        <div class="alert alert-danger">{{ error }}</div>
+        <br>
+    {% endif %}
+    
+    <div class="form-group">
+        <label>Введите логин{{ token_access ? ' или токен' : '' }}</label>
+        <input type="text" class="form-control" name="login">
+    </div>
+    <div class="form-group">
+        <label>Введите пароль</label>
+        <input type="password" class="form-control" name="password">
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Войти</button>
+    </div>
+</form>
+{% endblock %}

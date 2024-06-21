@@ -1,0 +1,96 @@
+{% extends '../../layout/panel.twig' %}
+
+{% block content %}
+	<div class="row">
+		<div class="col-md-6">
+			<legend>Платёж #{{ payment._id }}</legend>
+			<table class="table table-hover">
+				<tbody>
+					<tr>
+						<th>Токен</th>
+						<td>{{ token.name }}</td>
+					</tr>
+					{% if is_token == false %}
+					<tr>
+						<th>Дроп</th>
+						<td>
+							<a href="/drops/edit?id={{ drop._id }}">{{ drop.phone }}</a>
+						</td>
+					</tr>
+					{% endif %}
+					<tr>
+						<th>Сумма</th>
+						<td>{{ payment.amount }}</td>
+					</tr>
+					<tr>
+						<th>URL успеха</th>
+						<td>{{ payment.success_url }}</td>
+					</tr>
+					<tr>
+						<th>URL ошибки</th>
+						<td>{{ payment.fail_url }}</td>
+					</tr>
+					<tr>
+						<th>Метод</th>
+						<td>{{ payment.method == 'qw' ? 'QIWI': 'Банковская карта' }}</td>
+					</tr>
+					<tr>
+						<th>Платёжная ссылка</th>
+						<td>
+                            {% if payment.pay_link %}
+                                <input type="text" class="form-control" value="{{ payment.pay_link }}" readonly>
+                            {% else %}
+                                -
+                            {% endif %}
+                        </td>
+					</tr>
+					<tr>
+						<th>Статус</th>
+						<td>
+							<span class="label label-{{ status_type[payment.status] }}">{{ status[payment.status] }}</span>
+						</td>
+					</tr>
+					<tr>
+						<th>Ошибка</th>
+						<td>
+							{% if payment.error %}
+								<code>{{ payment.error }}</code>
+							{% else %}
+								<code>-</code>
+							{% endif %}
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+        <div class="col-md-6">
+            <legend>История уведомлений</legend>
+			<a href="/payments/resend?id={{ payment._id }}" class="btn btn-primary">Переотправить</a>
+			<br>
+			<br>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <td>URL</td>
+                        <td>Код</td>
+                        <td>Ответ</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in callbacks %}
+                        <tr>
+                            <td>{{ item.callback_url }}</td>
+                            <td>
+                                <b>{{ item.code }}</b>
+                            </td>
+                            <td>
+                                <code>{{ item.body }}</code>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+	</div>
+{% endblock %}

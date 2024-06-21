@@ -1,0 +1,29 @@
+{% extends '../../layout/panel.twig' %}
+
+{% block content %}
+	<legend>Получение P2P токенов</legend>
+
+	<form action="/issue/request-ptp" method="post">
+		<div class="form-group">
+			<label>Наименование ключа</label>
+			<input type="text" name="name" class="form-control">
+		</div>
+		<div class="form-group">
+			<label>Callback URL (если для этого метода, то нужно указывать https://домен/callback/qiwi)</label>
+			<input type="text" name="callback" class="form-control">
+		</div>
+		<div class="form-group">
+			<label>Access Token</label>
+			<input type="text" name="token" class="form-control">
+		</div>
+		<div class="form-group">
+			<button type="submit" class="btn btn-primary">Отправить</button>
+		</div>
+		{% if result %}
+			<div class="form-group">
+				<label>Результат</label>
+				<textarea rows="10" class="form-control" readonly>{{ result }}</textarea>
+			</div>
+		{% endif %}
+	</form>
+{% endblock %}

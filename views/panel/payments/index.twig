@@ -1,0 +1,40 @@
+{% extends '../../layout/panel.twig' %}
+
+{% block content %}
+<legend>Список платежей</legend>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Токен</th>
+            {% if is_token == false %}
+            <th>Дроп</th>
+            {% endif %}
+            <th>Сумма</th>
+            <th>Колбек отправлен</th>
+            <th>Метод</th>
+            <th>Статус</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in payments %}
+            <tr>
+                <td>{{ item.token.name }}</td>
+                {% if is_token == false %}
+                <td>{{ item.drop.phone }}</td>
+                {% endif %}
+                <td>{{ item.amount }} RUB</td>
+                <td>{{ item.callback_sent ? 'Да' : 'Нет' }}</td>
+                <td>{{ item.method == 'qw' ? 'QIWI' : 'Банковская карта' }}</td>
+                <td>
+                    <span class="label label-{{ status_type[item.status] }}">{{ status[item.status] }}</span>
+                </td>
+                <td>
+                    <a href="/payments/view?id={{ item._id }}">Просмотр</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
